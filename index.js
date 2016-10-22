@@ -8,15 +8,12 @@ app.use((req, res, next) => {
   next()
 })
 
-app.get('/', (req, res) => {
+app.get('/', (req, res, next) => {
   res.send('Hello, world!')
 })
 
-app.use((err, req, res) => {
-  const status = err ? 500 : 404
-  res
-    .status(status)
-    .send(`An error occured... (${status})`)
+app.use((req, res) => {
+  res.status(404).send('404 Not Found')
 })
 
 app.listen(port, () => {
